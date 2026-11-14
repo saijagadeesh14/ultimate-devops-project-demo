@@ -1,0 +1,30 @@
+name: ad-service-ci 
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'src/ad/**'
+      - '.github/workflows/ad-service-ci.yaml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
+
+      - name: Build Ad Service and Run Tests
+        working-directory: src/ad
+        run: |
+          chmod +x gradlew
+          ./gradlew clean test installDist -PprotoSourceDir=./pb
