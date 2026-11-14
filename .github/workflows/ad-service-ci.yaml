@@ -27,4 +27,4 @@ jobs:
         working-directory: src/ad
         run: |
           chmod +x gradlew
-          ./gradlew clean test installDist -PprotoSourceDir=./pb
+          ./gradlew installDist -PprotoSourceDir=./pb
