@@ -8,6 +8,12 @@ on:
     paths:
       - 'src/ad/**'
       - '.github/workflows/ad-service-ci.yaml'
+  push:
+    branches:
+      - feature/ad-service-ci
+    paths:
+      - 'src/ad/**'
+      - '.github/workflows/ad-service-ci.yaml'
 
 jobs:
   build:
@@ -29,7 +35,7 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew installDist -PprotoSourceDir=./pb
-  Docker:
+  docker:
     runs-on: ubuntu-latest
 
     needs: build
